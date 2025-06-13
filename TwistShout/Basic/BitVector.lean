@@ -1,4 +1,4 @@
--- Basics/BitVector.lean  (replaces the earlier stub)
+-- Basics/BitVector.lean 
 import Mathlib.Data.Fin.Tuple
 import Mathlib.Data.Nat.Bitwise
 
