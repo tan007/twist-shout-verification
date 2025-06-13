@@ -1,8 +1,15 @@
 -- Basics/EqualityFunc.lean
-import Mathlib.Data.Finset.Basic
-namespace TwistShout.Basics
+import Mathlib.Data.Fin.Basic
+import Mathlib.Algebra.BigOperators
 
-/-- Equality function `eqₑ` used in sum‑checks (stub). -/
-def eqe {n} {𝔽} [Field 𝔽] (x y : Fin n → 𝔽) : 𝔽 := 0
+namespace TwistShout.Basics
+open BigOperators
+
+variable {s : ℕ} {𝔽 : Type} [Field 𝔽]
+
+/-- Multilinear extension of equality  
+`eqₑ (x, e) = ∏ᵢ (xᵢ * eᵢ + (1‑xᵢ)(1‑eᵢ))`. -/
+def eqe (x e : Fin s → 𝔽) : 𝔽 :=
+  ∏ i, (x i * e i + (1 - x i) * (1 - e i))
 
 end TwistShout.Basics
