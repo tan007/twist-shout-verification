@@ -1,10 +1,15 @@
--- Basics/BitVector.lean
-import Mathlib.Data.Vector
+-- Basics/BitVector.lean  (replaces the earlier stub)
+import Mathlib.Data.Fin.Tuple
+import Mathlib.Data.Nat.Bitwise
+
 namespace TwistShout.Basics
 
-def BitVec (n : ℕ) := Vector Bool n
+/-- Boolean vector of length `n`. -/
+abbrev BitVec (n : ℕ) := Fin n → Bool
 
-/-- Little‑endian to nat (stub). -/
-def le2nat {n} : BitVec n → ℕ := fun _ => 0
+/-- Interpret a little‑endian bit‑vector as a natural number. -/
+def bitvecToNat {n} (v : BitVec n) : ℕ :=
+  Fin.fold (fun acc i ↦ acc + if v i then (1 <<< i) else 0) 0
 
 end TwistShout.Basics
+
